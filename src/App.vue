@@ -1,30 +1,28 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <component :is="`${layout}-layout`" v-if="layout"></component>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import AuthLayout from './layouts/AuthLayout.vue'
+import MainLayout from './layouts/MainLayout.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
-nav {
-  padding: 30px;
+export default {
+  components: { MainLayout, AuthLayout },
+  setup () {
+    const route = useRoute()
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    const layout = computed(() => {
+      return route.meta.layout
+    })
+    return {
+      layout
     }
   }
 }
+</script>
+
+<style lang="scss">
+
 </style>
