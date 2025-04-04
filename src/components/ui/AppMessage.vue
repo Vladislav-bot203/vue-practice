@@ -46,6 +46,10 @@ export default {
         border-left: 3px solid rgb(190, 91, 91);
     }
 
+    .warning {
+      border-left: 3px solid rgb(235, 245, 97);
+    }
+
     .alert-close {
         position: relative;
         top: 10px;

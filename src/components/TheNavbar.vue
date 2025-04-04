@@ -7,7 +7,7 @@
                 <router-link to="/">Заявки</router-link>
             </li>
             <li>
-                <router-link to="/">Помощь</router-link>
+                <router-link to="/help">Помощь</router-link>
             </li>
             <li>
                 <a href="#">Сообщения</a>
@@ -58,5 +58,9 @@ export default {
 a {
     color: black;
     text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
 }
 </style>
