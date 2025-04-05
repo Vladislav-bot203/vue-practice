@@ -4,11 +4,11 @@
             <button class="primary" @click="modal = true">Создать</button>
         </template>
 
-        <request-table :requests="[]"></request-table>
+        <request-table :requests="requests"></request-table>
 
         <teleport to='body'>
             <app-modal title="Создать заявку" @close="close" v-if="modal">
-                <request-modal-body></request-modal-body>
+                <request-modal-body @created="modal = false"></request-modal-body>
             </app-modal>
         </teleport>
     </app-page>
@@ -17,11 +17,15 @@
 <script setup>
 import AppPage from '@/components/ui/AppPage.vue'
 import RequestTable from '@/components/request/RequestTable.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import AppModal from '@/components/ui/AppModal.vue'
 import RequestModalBody from '@/components/request/RequestModalBody.vue'
+import { useStore } from 'vuex'
 
 const modal = ref(false)
+const store = useStore()
+
+const requests = computed(() => store.getters['request/requests'])
 
 const close = function () {
   modal.value = false
