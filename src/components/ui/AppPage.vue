@@ -29,7 +29,7 @@ watchEffect(() => {
 
 <style scoped lang="scss">
 .card {
-    width: 60%;
+    width: 80%;
     padding: 20px;
     box-sizing: border-box;
     background-color: azure;

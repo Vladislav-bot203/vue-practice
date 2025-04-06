@@ -40,6 +40,22 @@ export default {
         },
         { root: true })
       }
+    },
+    async load ({ dispatch, commit }) {
+      try {
+        const token = store.getters['auth/token']
+        const { data } = await axios.get(`/requests.json?auth=${token}`)
+        const requests = Object.keys(data).map((id) => {
+          return { ...data[id], id }
+        })
+        commit('setRequests', requests)
+      } catch (error) {
+        dispatch('setMessage', {
+          value: error.message,
+          type: 'danger'
+        },
+        { root: true })
+      }
     }
   }
 }
