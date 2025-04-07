@@ -10,7 +10,7 @@
                 <router-link to="/help">Помощь</router-link>
             </li>
             <li>
-                <a href="#">Сообщения</a>
+                <a href="#" @click.prevent="openSidebar">Сообщения</a>
             </li>
             <li>
                 <a href="#" @click.prevent="logout">Выход</a>
@@ -27,11 +27,16 @@ export default {
     const router = useRouter()
     const store = useStore()
 
+    const openSidebar = () => {
+      store.commit('openSidebar')
+    }
+
     return {
       logout: () => {
         store.commit('auth/logout')
         router.push('/auth')
-      }
+      },
+      openSidebar
     }
   }
 }
@@ -52,7 +57,7 @@ export default {
 .navbar-menu {
     display: flex;
     list-style: none;
-    gap: 15px;
+    gap: 40px;
 }
 
 a {

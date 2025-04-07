@@ -1,4 +1,7 @@
 <template>
+        <div v-if="back" class="back">
+          <router-link to="/">Вернуться к списку заявок</router-link>
+        </div>
         <div class="card">
         <h1 class="card-title">
             {{title}}
@@ -16,6 +19,10 @@ const props = defineProps({
   title: {
     type: String,
     required: true
+  },
+  back: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -42,5 +49,17 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.back {
+  width: 80%;
+  margin: 40px auto 0 auto;
+  text-align: left;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
 }
 </style>

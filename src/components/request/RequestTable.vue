@@ -17,12 +17,12 @@
                 <td>{{ request.fio }}</td>
                 <td>{{ request.phone }}</td>
                 <td>{{ currency(request.amount) }}</td>
-                <td>{{ request.status }}</td>
+                <td><app-status :type="request.status"></app-status></td>
                 <td>
                     <router-link
                         v-slot="{ navigate }"
                         custom
-                        to="/"
+                        :to="{name: 'Request', params: {id: request.id}}"
                     >
                         <button @click="navigate">Открыть</button>
                      </router-link>
@@ -33,9 +33,9 @@
 </template>
 
 <script setup>
-// {name: 'Request', params: {id: request.id}}
 import { defineProps } from 'vue'
 import currency from '@/utils/currency-formatter'
+import AppStatus from '../ui/AppStatus.vue'
 
 defineProps(['requests'])
 
